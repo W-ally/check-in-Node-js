@@ -19,12 +19,7 @@ const createRegister = async (req, res) => {
 		const { entranceTime } = req.body;
 
 		const newRegister = await Registation.create({
-			entranceTime: new Date(),
-			
-			
-		
-			
-		});
+			entranceTime});
 
 		res.status(201).json({
 			status: 'working',
@@ -66,9 +61,9 @@ const updateRegister = async (req, res) => {
 		});
 	}
 
-	await user.update({ exitTime:new Date() });
+	await user.update({ exitTime, status:"out" });
 
-	res.status(204).json({ status: 'out' });
+	res.status(204).json({ status: 'success' });
 };
 
 const deleteRegister = async (req, res) => {
@@ -86,7 +81,7 @@ const deleteRegister = async (req, res) => {
 	// await user.destroy();
 	await user.update({ status: 'Cancelled' });
 
-	res.status(204).json({ status: 'Cancelled' });
+	res.status(204).json({ status: 'success' });
 };
 
 module.exports = {
